@@ -1,0 +1,26 @@
+@use '@/styles/helpers' as *;
+
+:root {
+  color-scheme: light;
+
+  --color-text: hsl(0deg 0% 5%);
+  --color-text-dim: hsl(0deg 0% 50%);
+  --color-bg: hsl(0deg 0% 99%);
+  --color-bg-2: hsl(0deg 0% 96%);
+  --border-radius-tiny: #{to-rem(4)};
+  --border-radius-small: #{to-rem(8)};
+  --border-radius: #{to-rem(16)};
+  --font-family:
+    'Inter', system-ui, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji';
+  --transition-duration: 0.1s;
+
+  &.dark {
+    color-scheme: dark;
+
+    --color-text: hsl(0deg 0% 99%);
+    --color-text-dim: hsl(0deg 0% 50%);
+    --color-bg: hsl(0deg 0% 5%);
+    --color-bg-2: hsl(0deg 0% 10%);
+  }
+}
