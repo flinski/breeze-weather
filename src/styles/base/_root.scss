@@ -5,8 +5,8 @@
 
   --color-text: hsl(0deg 0% 5%);
   --color-text-dim: hsl(0deg 0% 50%);
-  --color-bg: hsl(0deg 0% 99%);
-  --color-bg-2: hsl(0deg 0% 96%);
+  --color-bg: hsl(0deg 0% 100%);
+  --color-bg-2: #ecf4fa;
   --border-radius-tiny: #{to-rem(4)};
   --border-radius-small: #{to-rem(8)};
   --border-radius: #{to-rem(16)};
@@ -17,10 +17,5 @@
 
   &.dark {
     color-scheme: dark;
-
-    --color-text: hsl(0deg 0% 99%);
-    --color-text-dim: hsl(0deg 0% 50%);
-    --color-bg: hsl(0deg 0% 5%);
-    --color-bg-2: hsl(0deg 0% 10%);
   }
 }

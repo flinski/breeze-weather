@@ -1,0 +1,34 @@
+@use '@/styles/helpers' as *;
+
+.searchBar {
+  display: flex;
+  border-radius: var(--border-radius-small);
+  overflow: hidden;
+  background-color: var(--color-bg);
+  box-shadow: 0 to-rem(4) to-rem(16) hsl(0deg 0 20 / 10%);
+}
+
+.input {
+  flex-grow: 1;
+  height: to-rem(40);
+  background-color: transparent;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.searchButton,
+.locationButton {
+  @include square(40);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-dim);
+  background-color: transparent;
+
+  @include hover {
+    color: var(--color-text);
+  }
+}

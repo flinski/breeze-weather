@@ -1,4 +1,10 @@
 @use '@/styles/helpers' as *;
 
-// .app {
-// }
+.app {
+  --container-width: #{to-rem(1200)};
+  --padding-x: #{to-rem(20)};
+
+  max-width: calc(var(--container-width) + 2 * var(--padding-x));
+  padding-inline: var(--padding-x);
+  margin-inline: auto;
+}
