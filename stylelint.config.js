@@ -9,5 +9,6 @@ export default {
         message: 'Допустимые форматы: kebab-case или camelCase',
       },
     ],
+    'selector-pseudo-class-no-unknown': [true, { ignorePseudoClasses: ['global'] }],
   },
 }

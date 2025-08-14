@@ -8,36 +8,18 @@
 }
 
 .button {
-  position: relative;
-  width: to-rem(48);
-  height: to-rem(28);
-  background-color: var(--color-bg-3);
-  border-radius: 999px;
-  box-shadow: var(--shadow-toggler-button);
-}
+  @include square(40);
 
-.toggler {
-  @include square(22);
-
-  position: absolute;
-  top: 50%;
-  left: to-rem(2);
-  transform: translateY(-50%);
-  background-color: var(--color-bg);
-  border-radius: 50%;
-  box-shadow: var(--shadow-toggler);
-}
-
-.light,
-.dark {
-  font-size: to-rem(14);
-  font-weight: 500;
-}
-
-.light {
-  color: var(--color-text);
-}
-
-.dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: to-rem(20);
   color: var(--color-text-dim);
+  background-color: var(--color-widget-bg);
+  border-radius: var(--border-radius-small);
+  border: var(--border);
+
+  @include hover {
+    color: var(--color-text);
+  }
 }

@@ -3,17 +3,14 @@
 :root {
   color-scheme: light;
 
-  --color-text: hsl(0deg 0% 5%);
-  --color-text-dim: hsl(0deg 0% 50%);
-  --color-bg: hsl(0deg 0% 100%);
-  --color-bg-2: #ecf4fa;
-  --color-bg-3: hsl(206deg 58% 85%);
+  --color-text: hsl(240deg 10% 4%); // 950
+  --color-text-dim: hsl(240deg 4% 46%); // 500
+  --color-bg: hsl(240deg 5% 96%); // 100
+  --color-widget-bg: hsl(0deg 0% 98%); // 50
+  --border: #{to-rem(1) solid hsl(240deg 6% 90%)}; // 200
   --border-radius-tiny: #{to-rem(4)};
   --border-radius-small: #{to-rem(8)};
   --border-radius: #{to-rem(16)};
-  --shadow-widget: 0 #{to-rem(4)} #{to-rem(16)} hsl(0deg 0% 20% / 10%);
-  --shadow-toggler: 0 #{to-rem(1)} 0 hsl(0deg 0% 20% / 20%);
-  --shadow-toggler-button: inset 0 #{to-rem(1)} 0 hsl(0deg 0% 20% / 20%);
   --font-family:
     'Inter', system-ui, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji';
