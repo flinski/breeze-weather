@@ -1,0 +1,54 @@
+@use '@/styles/helpers' as *;
+
+.dailyWeather {
+  grid-column: 1 / 3;
+}
+
+.header {
+  font-size: to-rem(14);
+  color: var(--color-text-dim);
+
+  &:not(:last-child) {
+    margin-bottom: to-rem(24);
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  row-gap: to-rem(4);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  column-gap: to-rem(16);
+}
+
+.weekDay {
+  flex-grow: 1;
+}
+
+.image {
+  @include square(32);
+
+  position: relative;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+}
+
+.highTemp {
+  color: var(--color-text);
+}
+
+.lowTemp {
+  color: var(--color-text-dim);
+}
