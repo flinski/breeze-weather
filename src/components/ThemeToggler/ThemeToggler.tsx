@@ -5,7 +5,7 @@ import styles from './ThemeToggler.module.scss'
 export default function ThemeToggler() {
   return (
     <div className={styles.themeToggler}>
-      <button className={styles.button} aria-label="Switch theme">
+      <button className={`${styles.button} widget`} aria-label="Switch theme">
         <SunIcon />
       </button>
     </div>

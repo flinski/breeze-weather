@@ -15,9 +15,7 @@
   justify-content: center;
   font-size: to-rem(20);
   color: var(--color-text-dim);
-  background-color: var(--color-widget-bg);
   border-radius: var(--border-radius-small);
-  border: var(--border);
 
   @include hover {
     color: var(--color-text);

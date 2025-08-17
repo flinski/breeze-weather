@@ -1,0 +1,7 @@
+@use '@/styles/helpers' as *;
+
+.main {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: to-rem(24);
+}

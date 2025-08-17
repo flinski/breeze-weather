@@ -4,7 +4,7 @@ import styles from './SearchBar.module.scss'
 
 export default function SearchBar() {
   return (
-    <div className={styles.searchBar}>
+    <div className={`${styles.searchBar} widget`}>
       <button className={styles.searchButton} aria-label="Search location">
         <SearchIcon />
       </button>

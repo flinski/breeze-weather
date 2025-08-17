@@ -3,10 +3,10 @@
 .header {
   display: flex;
   align-items: center;
-  min-height: to-rem(72);
+  min-height: to-rem(88);
   column-gap: to-rem(16);
 }
 
 .column {
-  flex: 0 0 calc(100% / 3);
+  flex: 0 0 calc((100% - 2 * to-rem(16)) / 3);
 }

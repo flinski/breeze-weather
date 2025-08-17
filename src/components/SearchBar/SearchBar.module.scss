@@ -2,10 +2,8 @@
 
 .searchBar {
   display: flex;
-  border-radius: var(--border-radius-small);
   overflow: hidden;
-  background-color: var(--color-widget-bg);
-  border: var(--border);
+  border-radius: var(--border-radius-small);
 }
 
 .input {
