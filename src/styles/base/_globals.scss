@@ -38,8 +38,10 @@ body {
 }
 
 .widget {
+  padding: to-rem(24);
   background-color: var(--color-widget-bg);
   border: var(--border);
+  border-radius: var(--border-radius);
 }
 
 // a,

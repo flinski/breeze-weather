@@ -3,6 +3,8 @@
 .searchBar {
   display: flex;
   overflow: hidden;
+  background-color: var(--color-widget-bg);
+  border: var(--border);
   border-radius: var(--border-radius-small);
 }
 
