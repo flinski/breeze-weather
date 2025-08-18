@@ -4,7 +4,7 @@ import styles from './HourlyWeather.module.scss'
 export default function HourlyWeather() {
   return (
     <div className={`${styles.hourlyWeather} widget`}>
-      <div className={styles.header}>24-hour forecast</div>
+      <div className={styles.header}>Weather today</div>
       <ul className={styles.list}>
         {Array.from({ length: 24 }, (_, i) => i).map(() => (
           <li className={styles.item}>

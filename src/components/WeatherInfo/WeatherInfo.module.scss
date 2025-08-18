@@ -1,7 +1,7 @@
 @use '@/styles/helpers' as *;
 
 .weatherInfo {
-  grid-column: 4 / end;
+  grid-column: 4 / -1;
 }
 
 .list {
