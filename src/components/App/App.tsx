@@ -3,7 +3,8 @@ import Main from '@/components/Main'
 import CurrentWeather from '@/components/CurrentWeather'
 import WeatherInfo from '@/components/WeatherInfo'
 import HourlyWeather from '@/components/HourlyWeather'
-// import DailyWeather from '@/components/DailyWeather'
+import DailyWeather from '@/components/DailyWeather'
+import Footer from '@/components/Footer'
 import styles from './App.module.scss'
 
 export default function App() {
@@ -14,7 +15,9 @@ export default function App() {
         <CurrentWeather />
         <WeatherInfo />
         <HourlyWeather />
+        <DailyWeather />
       </Main>
+      <Footer />
     </div>
   )
 }

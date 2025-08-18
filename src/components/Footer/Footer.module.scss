@@ -1,0 +1,9 @@
+@use '@/styles/helpers' as *;
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: to-rem(24);
+  color: var(--color-text-dim);
+}

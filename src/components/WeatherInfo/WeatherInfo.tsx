@@ -15,7 +15,7 @@ export default function WeatherInfo() {
             <WindIcon className={styles.icon} />
             <span className={styles.title}>Wind</span>
           </div>
-          <div className={styles.value}>2 m/s, N</div>
+          <div className={styles.value}>West, 2 m/s</div>
         </li>
         <li className={styles.item}>
           <div className={styles.info}>
