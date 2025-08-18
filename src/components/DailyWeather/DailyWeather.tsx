@@ -1,4 +1,4 @@
-import w02d from '@/assets/images/weather-icons/02d.png'
+import w01d from '@/assets/images/weather-icons/w01d.svg'
 import styles from './DailyWeather.module.scss'
 
 export default function DailyWeather() {
@@ -10,7 +10,7 @@ export default function DailyWeather() {
           <li className={styles.item}>
             <div className={styles.weekDay}>Friday</div>
             <div className={styles.image}>
-              <img src={w02d} alt="" />
+              <img src={w01d} alt="" />
             </div>
             <div className={styles.highTemp}>20°</div>
             <div className={styles.lowTemp}>17°</div>

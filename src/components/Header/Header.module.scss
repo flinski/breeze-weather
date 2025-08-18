@@ -1,12 +1,16 @@
 @use '@/styles/helpers' as *;
 
 .header {
-  display: flex;
-  align-items: center;
-  min-height: to-rem(88);
+  display: grid;
+  grid-template-columns:
+    1fr
+    to-rem(440) 1fr;
   column-gap: to-rem(16);
+  padding-block: to-rem(16);
+  align-items: center;
 }
 
-.column {
-  flex: 0 0 calc((100% - 2 * to-rem(16)) / 3);
+.column:nth-child(3) {
+  display: flex;
+  justify-content: flex-end;
 }

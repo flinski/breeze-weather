@@ -1,0 +1,18 @@
+@use '@/styles/helpers' as *;
+
+.findMeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: to-rem(8);
+  padding-inline: to-rem(16);
+  min-height: to-rem(44);
+  border-radius: var(--border-radius-round);
+  font-size: to-rem(16);
+  color: var(--color-text);
+  background-color: var(--color-border);
+
+  @include hover {
+    background-color: var(--color-hover);
+  }
+}

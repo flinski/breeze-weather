@@ -1,19 +1,19 @@
-import Logo from '@/components/Logo'
+import FindMeButton from '@/components/FindMeButton'
 import SearchBar from '@/components/SearchBar'
-import ThemeToggler from '@/components/ThemeToggler'
+import SettingsButton from '@/components/SettingsButton'
 import styles from './Header.module.scss'
 
 export default function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.column}>
-        <Logo />
+        <FindMeButton />
       </div>
       <div className={styles.column}>
         <SearchBar />
       </div>
       <div className={styles.column}>
-        <ThemeToggler />
+        <SettingsButton />
       </div>
     </header>
   )

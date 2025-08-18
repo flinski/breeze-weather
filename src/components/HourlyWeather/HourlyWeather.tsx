@@ -1,4 +1,4 @@
-import w01d from '@/assets/images/weather-icons/01d.png'
+import w01d from '@/assets/images/weather-icons/w01d.svg'
 import styles from './HourlyWeather.module.scss'
 
 export default function HourlyWeather() {

@@ -3,5 +3,5 @@
 .main {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: to-rem(24);
+  gap: to-rem(16);
 }

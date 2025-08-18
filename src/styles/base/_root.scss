@@ -3,14 +3,16 @@
 :root {
   color-scheme: light;
 
-  --color-text: hsl(240deg 10% 4%); // 950
-  --color-text-dim: hsl(240deg 4% 46%); // 500
-  --color-bg: hsl(240deg 5% 96%); // 100
-  --color-widget-bg: hsl(0deg 0% 98%); // 50
-  --border: #{to-rem(1) solid hsl(240deg 6% 90%)}; // 200
-  --border-radius-tiny: #{to-rem(4)};
-  --border-radius-small: #{to-rem(8)};
+  --color-text: hsl(0deg 0% 7%);
+  --color-text-dim: hsl(0deg 0% 52%);
+  --color-bg: hsl(0deg 0% 97%);
+  --color-widget-bg: hsl(0deg 0% 100%);
+  --color-border: hsl(0deg 0% 94%);
+  --color-hover: hsl(0deg 0% 91%);
+  --border: #{to-rem(1) solid var(--color-border)};
   --border-radius: #{to-rem(16)};
+  --border-radius-round: #{to-rem(999)};
+  --shadow-widget: 0 #{to-rem(1)} 0 var(--color-border);
   --font-family:
     'Inter', system-ui, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji';
