@@ -100,6 +100,8 @@ export function getWeekFromDateString(dateString: string) {
       return 'Friday'
     case 6:
       return 'Saturday'
+    default:
+      return 'Unknown weekday'
   }
 }
 

@@ -32,6 +32,10 @@
 .weekDay {
   font-weight: 500;
   flex-grow: 1;
+
+  &:global(.dayOff) {
+    color: var(--color-alert);
+  }
 }
 
 .monthDay {
