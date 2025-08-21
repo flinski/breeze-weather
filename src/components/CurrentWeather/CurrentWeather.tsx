@@ -1,20 +1,35 @@
-import w01d from '@/assets/images/weather-icons/w01d.svg'
+import { type WeatherType } from '@/api'
+import { getPrecipitationDescription, getWeatherDescription } from '@/utils'
 import styles from './CurrentWeather.module.scss'
 
-export default function CurrentWeather() {
+type CurrentWeatherProps = {
+  weather: WeatherType
+}
+
+export default function CurrentWeather({ weather }: CurrentWeatherProps) {
+  const weatherCode = weather.current.weather_code
+  const weatherDescription = getWeatherDescription(weatherCode)
+  const weatherIcon = weatherDescription.day.images[1]
+  const weatherText = weatherDescription.day.description
+  const temp = weather.current.temperature_2m
+  const feelTemp = weather.current.apparent_temperature
+  const preciptitationSum = weather.daily.precipitation_sum[0]
+
   return (
     <div className={`${styles.currentWeather} widget`}>
       <div className={styles.header}>Current Weather</div>
       <div className={styles.info}>
         <div className={styles.image}>
-          <img src={w01d} alt="" />
+          <img src={weatherIcon} alt={weatherText} />
         </div>
         <div className={styles.descriptionAndTemp}>
-          <div className={styles.description}>Clear. Feels like +22°</div>
-          <div className={styles.temp}>19°</div>
+          <div className={styles.description}>
+            {weatherText}. Feels like {Math.round(feelTemp)}°
+          </div>
+          <div className={styles.temp}>{Math.round(temp)}°</div>
         </div>
       </div>
-      <div className={styles.summary}>No precipitation is expected today</div>
+      <div className={styles.summary}>{getPrecipitationDescription(preciptitationSum)}</div>
     </div>
   )
 }

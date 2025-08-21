@@ -32,5 +32,11 @@
 // }
 
 .value {
-  font-weight: 500;
+  font-weight: 400;
+}
+
+.windValue {
+  display: inline-flex;
+  align-items: center;
+  column-gap: to-rem(8);
 }
