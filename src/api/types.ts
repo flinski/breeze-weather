@@ -35,6 +35,7 @@ export type WeatherType = {
     temperature_2m: number[]
     weather_code: number[]
     uv_index: number[]
+    is_day: number[]
   }
   daily_units: {
     time: string

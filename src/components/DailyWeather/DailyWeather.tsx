@@ -1,32 +1,46 @@
 import type { WeatherType } from '@/api'
-import w01d from '@/assets/images/weather-icons/w01d.svg'
 import styles from './DailyWeather.module.scss'
+import { getMonthDayFromDateString, getWeatherDescription, getWeekFromDateString } from '@/utils'
 
 type DailyWeatherProps = {
   weather: WeatherType
 }
 
 export default function DailyWeather({ weather }: DailyWeatherProps) {
-  console.log(weather)
+  const weatherDaily = Array.from({ length: 7 }, (_, index) => ({
+    time: weather.daily.time[index],
+    code: weather.daily.weather_code[index],
+    tempMax: weather.daily.temperature_2m_max[index],
+    tempMin: weather.daily.temperature_2m_min[index],
+  }))
 
   return (
     <div className={`${styles.dailyWeather} widget`}>
       <div className={styles.header}>7-day forecast</div>
       <ul className={styles.list}>
-        {Array.from({ length: 7 }, (_, i) => i).map(() => (
+        {weatherDaily.map((day, index) => (
           <li className={styles.item}>
-            <div className={styles.weekDay}>Friday</div>
-            <div className={styles.monthDay}>18</div>
-            <div className={styles.image}>
-              <img src={w01d} alt="" />
+            <div className={styles.weekDay}>{getWeekFromDateString(day.time)}</div>
+            <div className={styles.monthDay}>
+              {index === 0 ? 'Today' : getMonthDayFromDateString(day.time)}
             </div>
-            <div className={styles.highTemp}>20°</div>
+            <div className={styles.image}>
+              <img
+                src={getWeatherDescription(day.code).day.images[1]}
+                alt={getWeatherDescription(day.code).day.description}
+                title={getWeatherDescription(day.code).day.description}
+              />
+            </div>
+            <div className={styles.highTemp}>{Math.round(day.tempMax)}°</div>
             <div className={styles.space}></div>
-            <div className={styles.lowTemp}>17°</div>
+            <div className={styles.lowTemp}>{Math.round(day.tempMin)}°</div>
             <div className={styles.image}>
-              <img src={w01d} alt="" />
+              <img
+                src={getWeatherDescription(day.code).night.images[1]}
+                alt={getWeatherDescription(day.code).night.description}
+                title={getWeatherDescription(day.code).night.description}
+              />
             </div>
-            <div className={styles.wind}>2 m/s</div>
           </li>
         ))}
       </ul>

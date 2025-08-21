@@ -9,8 +9,9 @@ type CurrentWeatherProps = {
 export default function CurrentWeather({ weather }: CurrentWeatherProps) {
   const weatherCode = weather.current.weather_code
   const weatherDescription = getWeatherDescription(weatherCode)
-  const weatherIcon = weatherDescription.day.images[1]
-  const weatherText = weatherDescription.day.description
+  const isDay = Boolean(weather.current.is_day)
+  const weatherIcon = weatherDescription[isDay ? 'day' : 'night'].images[1] // light / dark
+  const weatherText = weatherDescription[isDay ? 'day' : 'night'].description
   const temp = weather.current.temperature_2m
   const feelTemp = weather.current.apparent_temperature
   const preciptitationSum = weather.daily.precipitation_sum[0]

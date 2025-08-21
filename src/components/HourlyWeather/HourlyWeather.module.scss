@@ -1,6 +1,7 @@
 @use '@/styles/helpers' as *;
 
 .hourlyWeather {
+  position: relative;
   grid-column: 1 / -1;
   padding-inline: 0 !important;
 }
@@ -12,13 +13,10 @@
   margin-bottom: to-rem(24);
 }
 
-.list {
+.listWrapper {
   position: relative;
-  display: flex;
-  align-items: center;
-  column-gap: to-rem(24);
   padding-inline: to-rem(24);
-  margin-bottom: to-rem(36);
+  margin-bottom: to-rem(24);
   overflow: hidden;
 
   &::before {
@@ -26,24 +24,39 @@
     content: '';
     top: 0;
     left: 0;
-    width: 100%;
+    width: to-rem(24);
     height: 100%;
-    background: linear-gradient(
-      90deg,
-      hsl(0deg 0% 100%) 0%,
-      hsl(0deg 0% 100% / 0%) 3%,
-      hsl(0deg 0% 100% / 0%) 97%,
-      hsl(0deg 0% 100%) 100%
-    );
+    background: linear-gradient(90deg, hsl(0deg 0% 100%) 0%, hsl(0deg 0% 100% / 0%) 100%);
+    z-index: 10;
+  }
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    width: to-rem(24);
+    height: 100%;
+    background: linear-gradient(90deg, hsl(0deg 0% 100% / 0%) 0%, hsl(0deg 0% 100%) 100%);
     z-index: 10;
   }
 }
 
+.list {
+  position: relative;
+  display: flex;
+  align-items: center;
+  column-gap: to-rem(24);
+  transition-duration: 0.3s;
+}
+
 .item {
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   row-gap: to-rem(8);
+  width: to-rem(44);
 }
 
 .image {
@@ -68,5 +81,40 @@
 }
 
 .time {
+  font-size: to-rem(14);
   color: var(--color-text-dim);
+}
+
+.prevButton,
+.nextButton {
+  @include square(44);
+
+  position: absolute;
+  top: 50%;
+  z-index: 50;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: to-rem(20);
+  border-radius: 50%;
+  background-color: var(--color-widget-bg);
+  border: var(--border);
+  box-shadow: var(--shadow-widget);
+
+  @include hover {
+    background-color: var(--color-bg);
+  }
+
+  @include tablet {
+    @include square(52);
+  }
+}
+
+.prevButton {
+  left: to-rem(24);
+}
+
+.nextButton {
+  right: to-rem(24);
 }

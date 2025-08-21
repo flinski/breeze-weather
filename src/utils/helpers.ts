@@ -81,3 +81,29 @@ export function getFormattedTimeFromDateString(dateString: string) {
 
   return `${formattedHours}:${formattedMinutes}`
 }
+
+export function getWeekFromDateString(dateString: string) {
+  const weekDay = new Date(dateString).getDay()
+
+  switch (weekDay) {
+    case 0:
+      return 'Sunday'
+    case 1:
+      return 'Monday'
+    case 2:
+      return 'Tuesday'
+    case 3:
+      return 'Wednesday'
+    case 4:
+      return 'Thursday'
+    case 5:
+      return 'Friday'
+    case 6:
+      return 'Saturday'
+  }
+}
+
+export function getMonthDayFromDateString(dateString: string) {
+  const monthDay = new Date(dateString).getDate()
+  return monthDay
+}

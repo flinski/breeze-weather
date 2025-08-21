@@ -21,10 +21,22 @@
   flex-direction: column;
   align-items: center;
   row-gap: to-rem(8);
+  padding: to-rem(16);
+  border-radius: var(--border-radius);
+
+  &:nth-child(1) {
+    background-color: var(--color-bg);
+  }
 }
 
 .weekDay {
+  font-weight: 500;
   flex-grow: 1;
+}
+
+.monthDay {
+  font-size: to-rem(14);
+  color: var(--color-text-dim);
 }
 
 .image {
