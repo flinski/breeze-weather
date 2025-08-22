@@ -24,7 +24,7 @@ export default function Header({ query, setQuery, location, setLocation }: Heade
   return (
     <header className={styles.header}>
       <div className={styles.column}>
-        <FindMeButton />
+        <FindMeButton setLocation={setLocation} />
       </div>
       <div className={styles.column}>
         <SearchBar
