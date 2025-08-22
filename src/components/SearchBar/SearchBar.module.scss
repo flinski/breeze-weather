@@ -37,4 +37,8 @@
   font-size: to-rem(16);
   cursor: text;
   transition-duration: var(--transition-duration);
+
+  span {
+    text-wrap: nowrap;
+  }
 }

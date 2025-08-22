@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
-import type { WeatherType } from '@/api'
+import { useState } from 'react'
+import { useWeather } from '@/hooks/useWeather'
 
 import Header from '@/components/Header'
 import Main from '@/components/Main'
+import Spinner from '@/components/Spinner'
+import ErrorMessage from '@/components/ErrorMessage'
 import CurrentWeather from '@/components/CurrentWeather'
 import WeatherInfo from '@/components/WeatherInfo'
 import HourlyWeather from '@/components/HourlyWeather'
@@ -11,41 +13,26 @@ import Footer from '@/components/Footer'
 
 import styles from './App.module.scss'
 
+const defaultLocation = {
+  name: 'Berlin',
+  latitude: 52.52437,
+  longitude: 13.41053,
+}
+
 export default function App() {
   const [query, setQuery] = useState('')
-  const [weather, setWeather] = useState<WeatherType | null>(null)
-  const [location, setLocation] = useState({
-    name: 'Berlin',
-    latitude: 52.52437,
-    longitude: 13.41053,
-  })
-  const [isLoading, setIsLoading] = useState(false)
-
-  useEffect(() => {
-    async function fetchWeather() {
-      try {
-        setIsLoading(true)
-        const weatherResponse = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&daily=weather_code,temperature_2m_min,temperature_2m_max,precipitation_sum,sunrise,sunset&hourly=temperature_2m,weather_code,uv_index,is_day&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m,pressure_msl,is_day&timezone=auto`
-        )
-        const weatherData: WeatherType = await weatherResponse.json()
-        console.log(weatherData)
-        setWeather(weatherData)
-      } catch (error) {
-        console.error(error)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    fetchWeather()
-  }, [location.latitude, location.longitude])
+  const [location, setLocation] = useState(defaultLocation)
+  const { isLoading, error, weather } = useWeather(location.latitude, location.longitude)
 
   return (
     <div className={styles.app}>
       <Header query={query} setQuery={setQuery} location={location} setLocation={setLocation} />
       {isLoading ? (
-        <div>Loading...</div>
+        <div className={styles.loader}>
+          <Spinner />
+        </div>
+      ) : error ? (
+        <ErrorMessage message={error.message} />
       ) : (
         <>
           {weather ? (

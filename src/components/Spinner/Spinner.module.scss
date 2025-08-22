@@ -1,0 +1,22 @@
+@use '@/styles/helpers' as *;
+
+.spinner {
+  @include square(32);
+
+  border: to-rem(3) solid var(--color-text-dim);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -54,6 +54,11 @@ export type WeatherType = {
   }
 }
 
+export type ErrorType = {
+  error: boolean
+  reason: string
+}
+
 export type SearchResultsResponseType = {
   generationtime_ms: number
   results: SearchResultsType[]
