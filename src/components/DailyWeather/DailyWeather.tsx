@@ -1,6 +1,6 @@
 import type { WeatherType } from '@/api'
-import styles from './DailyWeather.module.scss'
 import { getMonthDayFromDateString, getWeatherDescription, getWeekFromDateString } from '@/utils'
+import styles from './DailyWeather.module.scss'
 
 type DailyWeatherProps = {
   weather: WeatherType

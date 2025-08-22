@@ -1,9 +1,11 @@
-import type { WeatherType } from '@/api'
-import styles from './HourlyWeather.module.scss'
-import { getFormattedTimeFromDateString, getWeatherDescription } from '@/utils'
-import PrevIcon from '../icons/PrevIcon'
-import NextIcon from '../icons/NextIcon'
 import { useEffect, useRef, useState } from 'react'
+import type { WeatherType } from '@/api'
+import { getFormattedTimeFromDateString, getWeatherDescription } from '@/utils'
+
+import PrevIcon from '@/components/icons/PrevIcon'
+import NextIcon from '@/components/icons/NextIcon'
+
+import styles from './HourlyWeather.module.scss'
 
 type HourlyWeatherProps = {
   weather: WeatherType

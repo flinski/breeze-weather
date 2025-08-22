@@ -1,0 +1,48 @@
+@use '@/styles/helpers' as *;
+
+.searchResults {
+  position: absolute;
+  top: to-rem(56);
+  left: 0;
+  width: 100%;
+  z-index: 50;
+}
+
+// .list {
+// }
+
+// .item {
+// }
+
+.result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: to-rem(16);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-bg);
+  }
+}
+
+.locationAndContry {
+  display: flex;
+  flex-direction: column;
+  row-gap: to-rem(4);
+}
+
+.location {
+  font-weight: 500;
+}
+
+.country {
+  font-size: to-rem(14);
+  color: var(--color-text-dim);
+}
+
+.flag {
+  font-size: to-rem(14);
+  color: var(--color-text-dim);
+}

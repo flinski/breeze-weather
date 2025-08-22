@@ -80,6 +80,10 @@
   font-weight: 500;
 }
 
+.space {
+  height: to-rem(100);
+}
+
 .time {
   font-size: to-rem(14);
   color: var(--color-text-dim);
@@ -117,4 +121,10 @@
 
 .nextButton {
   right: to-rem(24);
+}
+
+.chart {
+  position: absolute;
+  top: to-rem(24);
+  left: to-rem(0);
 }
