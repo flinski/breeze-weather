@@ -1,29 +1,12 @@
-import { useSearchResults } from '@/hooks'
+import { useAppState } from '@/contexts/AppContext'
 
 import SearchIcon from '@/components/icons/SearchIcon'
 import SearchResults from '@/components/SearchResults'
 
 import styles from './SearchBar.module.scss'
 
-type SearchBarProps = {
-  query: string
-  setQuery: React.Dispatch<React.SetStateAction<string>>
-  location: {
-    name: string
-    latitude: number
-    longitude: number
-  }
-  setLocation: React.Dispatch<
-    React.SetStateAction<{
-      name: string
-      latitude: number
-      longitude: number
-    }>
-  >
-}
-
-export default function SearchBar({ query, setQuery, location, setLocation }: SearchBarProps) {
-  const { searchResults, setSearchResults } = useSearchResults(query)
+export default function SearchBar() {
+  const { query, setQuery, location, setLocation, searchResults, setSearchResults } = useAppState()
 
   const handleBlur = () => {
     setQuery('')

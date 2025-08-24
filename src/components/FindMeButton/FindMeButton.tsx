@@ -1,31 +1,34 @@
 import LocationIcon from '@/components/icons/LocationIcon'
 import styles from './FindMeButton.module.scss'
+import { useAppState } from '@/contexts/AppContext'
 
-type FindMeButtonProps = {
-  setLocation: React.Dispatch<
-    React.SetStateAction<{
-      name: string
-      latitude: number
-      longitude: number
-    }>
-  >
-}
+export default function FindMeButton() {
+  const { setLocation, setGeoIsLoading } = useAppState()
 
-export default function FindMeButton({ setLocation }: FindMeButtonProps) {
   const handleClick = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const { latitude, longitude } = position.coords
-      async function fetchCity() {
-        const response = await fetch(
-          `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
-        )
-        const data = await response.json()
-        console.log(data)
-        setLocation({ name: data.address.city, latitude: latitude, longitude: longitude })
-      }
+    setGeoIsLoading(true)
 
-      fetchCity()
-    })
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords
+
+        async function fetchCity() {
+          try {
+            const response = await fetch(
+              `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+            )
+            const data = await response.json()
+            console.log(data)
+            setLocation({ name: data.address.city, latitude: latitude, longitude: longitude })
+          } finally {
+            setGeoIsLoading(false)
+          }
+        }
+
+        fetchCity()
+      },
+      (error) => console.error(error)
+    )
   }
 
   return (

@@ -70,7 +70,7 @@ export function getUVIndexDescription(uvIndex: number) {
   }
   return 'Extreme'
 }
-
+// @param
 export function getFormattedTimeFromDateString(dateString: string) {
   const date = new Date(dateString)
   const hours = date.getHours()

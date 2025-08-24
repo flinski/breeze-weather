@@ -22,7 +22,7 @@ export default function DailyWeather({ weather }: DailyWeatherProps) {
           const weekDay = new Date(day.time).getDay()
 
           return (
-            <li className={styles.item}>
+            <li className={styles.item} key={day.time}>
               <div
                 className={`${styles.weekDay} ${weekDay === 0 || weekDay === 6 ? 'dayOff' : ''}`}
               >

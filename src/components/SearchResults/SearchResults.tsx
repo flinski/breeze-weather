@@ -21,7 +21,7 @@ export default function SearchResults({ searchResults, setLocation }: SearchResu
     <div className={`${styles.searchResults} widget`}>
       <ul className={styles.list}>
         {searchResults.map((result) => (
-          <li className={styles.item}>
+          <li className={styles.item} key={result.id}>
             <div
               className={styles.result}
               onMouseDown={() => handleClick(result.name, result.latitude, result.longitude)}

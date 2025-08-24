@@ -1,5 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { AppProvider } from './contexts/AppContext'
 import App from '@/components/App'
 import '@/styles/index.scss'
 
@@ -13,6 +14,8 @@ const root = createRoot(rootElement)
 
 root.render(
   <StrictMode>
-    <App />
+    <AppProvider>
+      <App />
+    </AppProvider>
   </StrictMode>
 )

@@ -104,7 +104,7 @@ export default function HourlyWeather({ weather }: HourlyWeatherProps) {
       <div className={styles.listWrapper}>
         <ul className={styles.list} style={{ transform: `translateX(${offset}px)` }} ref={listRef}>
           {weatherHourly.map((weather) => (
-            <li className={styles.item} ref={itemRef}>
+            <li className={styles.item} ref={itemRef} key={weather.time}>
               <div className={styles.temp}>{Math.round(weather.temp)}°</div>
               <div className={styles.image}>
                 <img

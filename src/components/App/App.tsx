@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { useWeather } from '@/hooks/useWeather'
+import { useAppState } from '@/contexts/AppContext'
 
 import Header from '@/components/Header'
 import Main from '@/components/Main'
@@ -13,41 +12,29 @@ import Footer from '@/components/Footer'
 
 import styles from './App.module.scss'
 
-const defaultLocation = {
-  name: 'Berlin',
-  latitude: 52.52437,
-  longitude: 13.41053,
-}
-
 export default function App() {
-  const [query, setQuery] = useState('')
-  const [location, setLocation] = useState(defaultLocation)
-  const { isLoading, error, weather } = useWeather(location.latitude, location.longitude)
+  const { geoIsLoading, weatherIsLoading, weatherError, weather } = useAppState()
 
   return (
     <div className={styles.app}>
-      <Header query={query} setQuery={setQuery} location={location} setLocation={setLocation} />
-      {isLoading ? (
+      <Header />
+      {weatherIsLoading || geoIsLoading ? (
         <div className={styles.loader}>
           <Spinner />
         </div>
-      ) : error ? (
-        <ErrorMessage message={error.message} />
-      ) : (
+      ) : weatherError ? (
+        <ErrorMessage message={weatherError.message} />
+      ) : weather ? (
         <>
-          {weather ? (
-            <>
-              <Main>
-                <CurrentWeather weather={weather} />
-                <WeatherInfo weather={weather} />
-                <HourlyWeather weather={weather} />
-                <DailyWeather weather={weather} />
-              </Main>
-              <Footer />
-            </>
-          ) : null}
+          <Main>
+            <CurrentWeather weather={weather} />
+            <WeatherInfo weather={weather} />
+            <HourlyWeather weather={weather} />
+            <DailyWeather weather={weather} />
+          </Main>
+          <Footer />
         </>
-      )}
+      ) : null}
     </div>
   )
 }
