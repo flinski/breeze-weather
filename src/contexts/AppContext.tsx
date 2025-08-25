@@ -20,6 +20,13 @@ type AppContextType = {
   searchResultsError: Error | null
   searchResults: SearchResultsType[] | null
   setSearchResults: React.Dispatch<React.SetStateAction<SearchResultsType[] | null>>
+  settings: {
+    theme: 'light' | 'dark'
+    tempUnits: 'celsius' | 'fahrenheit'
+    windUnits: 'm/s' | 'km/h'
+    pressureUnits: 'mmHg' | 'hPa'
+  }
+  setSettings: React.Dispatch<React.SetStateAction<AppContextType['settings']>>
 }
 
 const AppContext = createContext<AppContextType | null>(null)
@@ -47,6 +54,12 @@ export function AppProvider({ children }: AppProviderProps) {
     searchResults,
     setSearchResults,
   } = useSearchResults(query)
+  const [settings, setSettings] = useState<AppContextType['settings']>({
+    theme: 'light',
+    tempUnits: 'celsius',
+    windUnits: 'km/h',
+    pressureUnits: 'mmHg',
+  })
 
   return (
     <AppContext.Provider
@@ -64,6 +77,8 @@ export function AppProvider({ children }: AppProviderProps) {
         searchResultsError,
         searchResults,
         setSearchResults,
+        settings,
+        setSettings,
       }}
     >
       {children}

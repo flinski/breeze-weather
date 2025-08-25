@@ -1,5 +1,9 @@
 @use '@/styles/helpers' as *;
 
+.settingsContainer {
+  position: relative;
+}
+
 .settingsButton {
   @include square(44);
 
