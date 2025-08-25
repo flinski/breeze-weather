@@ -79,4 +79,8 @@
     color: var(--color-widget-bg);
     background-color: var(--color-text);
   }
+
+  @include mobile {
+    min-width: to-rem(80);
+  }
 }

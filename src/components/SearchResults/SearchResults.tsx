@@ -1,3 +1,5 @@
+// @ts-expect-error Description
+import Flag from 'react-world-flags'
 import type { SearchResultsType } from '@/api'
 import styles from './SearchResults.module.scss'
 
@@ -14,7 +16,9 @@ type SearchResultsProps = {
 
 export default function SearchResults({ searchResults, setLocation }: SearchResultsProps) {
   const handleClick = (name: string, lat: number, lng: number) => {
-    setLocation({ name: name, latitude: lat, longitude: lng })
+    const location = { name: name, latitude: lat, longitude: lng }
+    setLocation(location)
+    localStorage.setItem('flinski-breeze-weather-location', JSON.stringify(location))
   }
 
   return (
@@ -30,7 +34,9 @@ export default function SearchResults({ searchResults, setLocation }: SearchResu
                 <div className={styles.location}>{result.name}</div>
                 <div className={styles.country}>{result.country}</div>
               </div>
-              <div className={styles.flag}>{result.country_code}</div>
+              <div className={styles.flagWrappar}>
+                <Flag className={styles.flag} code={result.country_code} />
+              </div>
             </div>
           </li>
         ))}

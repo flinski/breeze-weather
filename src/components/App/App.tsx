@@ -14,7 +14,8 @@ import Footer from '@/components/Footer'
 import styles from './App.module.scss'
 
 export default function App() {
-  const { geoIsLoading, weatherIsLoading, weatherError, weather, setSettings } = useAppState()
+  const { geoIsLoading, weatherIsLoading, weatherError, weather, setSettings, setLocation } =
+    useAppState()
 
   useEffect(() => {
     const storedSettings: {
@@ -23,7 +24,7 @@ export default function App() {
       windUnits: 'm/s' | 'km/h'
       pressureUnits: 'mmHg' | 'hPa'
     } | null = JSON.parse(localStorage.getItem('flinski-breeze-weather-settings') ?? 'null')
-    console.log('storedSettings:', storedSettings)
+
     if (storedSettings) {
       setSettings(storedSettings)
       if (storedSettings.theme === 'dark') {
@@ -31,6 +32,16 @@ export default function App() {
       }
     }
   }, [setSettings])
+
+  useEffect(() => {
+    const storedLocation: { name: string; latitude: number; longitude: number } | null = JSON.parse(
+      localStorage.getItem('flinski-breeze-weather-location') ?? 'null'
+    )
+
+    if (storedLocation) {
+      setLocation(storedLocation)
+    }
+  }, [setLocation])
 
   return (
     <div className={styles.app}>

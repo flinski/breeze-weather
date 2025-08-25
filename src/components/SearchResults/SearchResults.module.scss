@@ -7,6 +7,10 @@
   width: 100%;
   z-index: 50;
   box-shadow: var(--shadow-modal) !important;
+
+  @include mobile {
+    padding: to-rem(8) !important;
+  }
 }
 
 // .list {
@@ -43,7 +47,23 @@
   color: var(--color-text-dim);
 }
 
+.flagWrappar {
+  @include square(24);
+
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  border: var(--border);
+  box-shadow: var(--shadow-widget);
+}
+
 .flag {
-  font-size: to-rem(14);
-  color: var(--color-text-dim);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
