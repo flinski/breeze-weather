@@ -9,6 +9,10 @@
   flex-direction: column;
   row-gap: to-rem(8);
   box-shadow: var(--shadow-modal) !important;
+
+  @include mobile {
+    right: 0;
+  }
 }
 
 .section {

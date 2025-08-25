@@ -42,6 +42,10 @@ export default function Settings({ isOpen, onClose }: SettingsProps) {
     }
   }, [isOpen, onClose])
 
+  useEffect(() => {
+    localStorage.setItem('flinski-breeze-weather-settings', JSON.stringify(settings))
+  }, [settings])
+
   const handleToggleLight = () => {
     setSettings((curSettings) => ({ ...curSettings, theme: 'light' }))
     document.documentElement.classList.remove('dark')

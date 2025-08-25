@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useAppState } from '@/contexts/AppContext'
 
 import Header from '@/components/Header'
@@ -13,7 +14,23 @@ import Footer from '@/components/Footer'
 import styles from './App.module.scss'
 
 export default function App() {
-  const { geoIsLoading, weatherIsLoading, weatherError, weather } = useAppState()
+  const { geoIsLoading, weatherIsLoading, weatherError, weather, setSettings } = useAppState()
+
+  useEffect(() => {
+    const storedSettings: {
+      theme: 'light' | 'dark'
+      tempUnits: 'celsius' | 'fahrenheit'
+      windUnits: 'm/s' | 'km/h'
+      pressureUnits: 'mmHg' | 'hPa'
+    } | null = JSON.parse(localStorage.getItem('flinski-breeze-weather-settings') ?? 'null')
+    console.log('storedSettings:', storedSettings)
+    if (storedSettings) {
+      setSettings(storedSettings)
+      if (storedSettings.theme === 'dark') {
+        document.documentElement.classList.add('dark')
+      }
+    }
+  }, [setSettings])
 
   return (
     <div className={styles.app}>
