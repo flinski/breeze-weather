@@ -2,18 +2,27 @@
 
 .dailyWeather {
   grid-column: 1 / -1;
+  padding-inline: 0 !important;
 }
 
 .header {
   font-size: to-rem(24);
   font-weight: 700;
   margin-bottom: to-rem(24);
+  padding-inline: to-rem(24);
 }
 
 .list {
   display: flex;
   justify-content: space-between;
   column-gap: to-rem(4);
+  padding-inline: to-rem(24);
+  overflow: auto;
+
+  @include mobile {
+    column-gap: to-rem(0);
+    padding-bottom: to-rem(8);
+  }
 }
 
 .item {

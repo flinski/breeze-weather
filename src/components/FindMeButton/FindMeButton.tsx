@@ -1,13 +1,12 @@
+import { useAppState } from '@/contexts/AppContext'
 import LocationIcon from '@/components/icons/LocationIcon'
 import styles from './FindMeButton.module.scss'
-import { useAppState } from '@/contexts/AppContext'
 
 export default function FindMeButton() {
   const { setLocation, setGeoIsLoading } = useAppState()
 
   const handleClick = () => {
     setGeoIsLoading(true)
-
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords
@@ -27,7 +26,10 @@ export default function FindMeButton() {
 
         fetchCity()
       },
-      (error) => console.error(error)
+      (error) => {
+        console.error(error)
+        setGeoIsLoading(false)
+      }
     )
   }
 

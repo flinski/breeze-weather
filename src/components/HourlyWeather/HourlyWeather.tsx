@@ -53,7 +53,8 @@ export default function HourlyWeather({ weather }: HourlyWeatherProps) {
 
     const numItems = weatherHourly.length
     const gapWidth = 24
-    const totalWidth = itemWidth * numItems + gapWidth * (numItems - 1)
+    const paddingWidth = 24
+    const totalWidth = itemWidth * numItems + gapWidth * (numItems - 1) + paddingWidth * 2
     setMaxOffset(-(totalWidth - listWidth))
   }, [weatherHourly.length])
 
@@ -66,12 +67,13 @@ export default function HourlyWeather({ weather }: HourlyWeatherProps) {
     const { width: itemWidth } = itemRef.current.getBoundingClientRect()
     const numItems = weatherHourly.length
     const gapWidth = 24
-    const totalWidth = itemWidth * numItems + gapWidth * (numItems - 1)
+    const paddingWidth = 24
+    const totalWidth = itemWidth * numItems + gapWidth * (numItems - 1) + paddingWidth * 2
     const step = listWidth / 3
     const maxOffset = totalWidth - listWidth
 
-    console.log(listWidth)
-    console.log(totalWidth)
+    console.log('listWidth:', listWidth)
+    console.log('totalWidth:', totalWidth)
 
     setOffset((curOffset) => {
       const targetOffset = curOffset - step

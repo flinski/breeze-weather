@@ -7,6 +7,10 @@
   max-width: calc(var(--container-width) + 2 * var(--padding-x));
   padding-inline: var(--padding-x);
   margin-inline: auto;
+
+  @include mobile {
+    --padding-x: #{to-rem(8)};
+  }
 }
 
 .loader {

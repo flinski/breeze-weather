@@ -2,6 +2,10 @@
 
 .weatherInfo {
   grid-column: 4 / -1;
+
+  @include mobile {
+    grid-column: 1 / -1;
+  }
 }
 
 .list {
@@ -9,6 +13,11 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+
+  @include mobile {
+    justify-content: flex-start;
+    row-gap: to-rem(12);
+  }
 }
 
 .item {

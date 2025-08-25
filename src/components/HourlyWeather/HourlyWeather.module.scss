@@ -15,30 +15,11 @@
 
 .listWrapper {
   position: relative;
-  padding-inline: to-rem(24);
   margin-bottom: to-rem(24);
   overflow: hidden;
 
-  &::before {
-    position: absolute;
-    content: '';
-    top: 0;
-    left: 0;
-    width: to-rem(24);
-    height: 100%;
-    background: linear-gradient(90deg, hsl(0deg 0% 100%) 0%, hsl(0deg 0% 100% / 0%) 100%);
-    z-index: 10;
-  }
-
-  &::after {
-    position: absolute;
-    content: '';
-    top: 0;
-    right: 0;
-    width: to-rem(24);
-    height: 100%;
-    background: linear-gradient(90deg, hsl(0deg 0% 100% / 0%) 0%, hsl(0deg 0% 100%) 100%);
-    z-index: 10;
+  @include mobile {
+    margin-bottom: to-rem(0);
   }
 }
 
@@ -47,16 +28,23 @@
   display: flex;
   align-items: center;
   column-gap: to-rem(24);
+  padding-inline: to-rem(24);
   transition-duration: 0.3s;
+
+  @include mobile {
+    min-height: to-rem(90);
+    padding-bottom: to-rem(24);
+    overflow: auto;
+  }
 }
 
 .item {
   flex-shrink: 0;
+  flex-basis: to-rem(44);
   display: flex;
   flex-direction: column;
   align-items: center;
   row-gap: to-rem(8);
-  width: to-rem(44);
 }
 
 .image {
@@ -112,6 +100,10 @@
 
   @include tablet {
     @include square(52);
+  }
+
+  @include mobile {
+    display: none !important;
   }
 }
 

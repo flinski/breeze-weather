@@ -21,6 +21,7 @@ export default function SearchBar() {
         type="text"
         name="location"
         autoComplete="off"
+        size={1}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onBlur={handleBlur}

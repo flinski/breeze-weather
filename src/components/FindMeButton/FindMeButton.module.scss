@@ -15,4 +15,23 @@
   @include hover {
     background-color: var(--color-hover);
   }
+
+  @include mobile {
+    @include square(44);
+
+    padding-inline: to-rem(0);
+    font-size: to-rem(20);
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+}
+
+.text {
+  text-wrap: nowrap;
+
+  @include mobile {
+    display: none;
+  }
 }
