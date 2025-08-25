@@ -23,6 +23,7 @@ export default function App() {
       tempUnits: 'celsius' | 'fahrenheit'
       windUnits: 'm/s' | 'km/h'
       pressureUnits: 'mmHg' | 'hPa'
+      language: 'english' | 'russian'
     } | null = JSON.parse(localStorage.getItem('flinski-breeze-weather-settings') ?? 'null')
 
     if (storedSettings) {

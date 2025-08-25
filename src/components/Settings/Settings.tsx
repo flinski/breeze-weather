@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useAppState } from '@/contexts/AppContext'
 
 import SunIcon from '@/components/icons/SunIcon'
 import PreferencesIcon from '@/components/icons/PreferencesIcon'
+import LanguagesIcon from '@/components/icons/LanguagesIcon'
 
 import styles from './Settings.module.scss'
 
@@ -19,6 +21,7 @@ export default function Settings({ isOpen, onClose }: SettingsProps) {
   const settingsRef = useRef<HTMLDivElement>(null)
   const { settings, setSettings } = useAppState()
   const isDark = settings.theme === 'dark'
+  const { t, i18n } = useTranslation()
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -80,36 +83,44 @@ export default function Settings({ isOpen, onClose }: SettingsProps) {
     setSettings((curSettings) => ({ ...curSettings, pressureUnits: 'hPa' }))
   }
 
+  const handleChangeLanguage = (lng: 'en' | 'ru') => {
+    setSettings((curSettings) => ({
+      ...curSettings,
+      language: lng === 'en' ? 'english' : 'russian',
+    }))
+    i18n.changeLanguage(lng)
+  }
+
   return (
     <div className={`${styles.settings} widget`} ref={settingsRef}>
       <div className={styles.section}>
         <div className={styles.heading}>
           <SunIcon className={styles.icon} />
-          <div className={styles.title}>Theme</div>
+          <div className={styles.title}>{t('theme')}</div>
         </div>
         <div className={styles.toggle}>
           <button
             className={`${styles.button} ${isDark ? '' : 'active'}`}
             onClick={handleToggleLight}
           >
-            Light
+            {t('theme_color.light')}
           </button>
           <button
             className={`${styles.button} ${isDark ? 'active' : ''}`}
             onClick={handleToggleDark}
           >
-            Dark
+            {t('theme_color.dark')}
           </button>
         </div>
       </div>
       <div className={styles.section}>
         <div className={styles.heading}>
           <PreferencesIcon />
-          <div className={styles.title}>Units of measurement</div>
+          <div className={styles.title}>{t('units')}</div>
         </div>
         <div className={styles.sectionInner}>
           <div className={styles.toggleWrapper}>
-            <div className={styles.label}>Temperature</div>
+            <div className={styles.label}>{t('temperature')}</div>
             <div className={styles.toggle}>
               <button
                 className={`${styles.button} ${settings.tempUnits === 'celsius' ? 'active' : ''}`}
@@ -126,39 +137,60 @@ export default function Settings({ isOpen, onClose }: SettingsProps) {
             </div>
           </div>
           <div className={styles.toggleWrapper}>
-            <div className={styles.label}>Wind</div>
+            <div className={styles.label}>{t('wind')}</div>
             <div className={styles.toggle}>
               <button
                 className={`${styles.button} ${settings.windUnits === 'm/s' ? 'active' : ''}`}
                 onClick={handleToggleMetersPerSecond}
               >
-                m/s
+                {t('ms')}
               </button>
               <button
                 className={`${styles.button} ${settings.windUnits === 'm/s' ? '' : 'active'}`}
                 onClick={handleToggleKilometersPerHour}
               >
-                km/h
+                {t('kmh')}
               </button>
             </div>
           </div>
           <div className={styles.toggleWrapper}>
-            <div className={styles.label}>Pressure</div>
+            <div className={styles.label}>{t('pressure')}</div>
             <div className={styles.toggle}>
               <button
                 className={`${styles.button} ${settings.pressureUnits === 'mmHg' ? 'active' : ''}`}
                 onClick={handleToggleMmHg}
               >
-                mmHg
+                {t('mmhg')}
               </button>
               <button
                 className={`${styles.button} ${settings.pressureUnits === 'mmHg' ? '' : 'active'}`}
                 onClick={handleToggleHPa}
               >
-                hPa
+                {t('hpa')}
               </button>
             </div>
           </div>
+        </div>
+      </div>
+      <div className={styles.section}>
+        <div className={styles.heading}>
+          <LanguagesIcon />
+          <div className={styles.title}>{t('language')}</div>
+        </div>
+
+        <div className={styles.toggle}>
+          <button
+            className={`${styles.button} ${settings.language === 'english' ? 'active' : ''}`}
+            onClick={() => handleChangeLanguage('en')}
+          >
+            {t('english')}
+          </button>
+          <button
+            className={`${styles.button} ${settings.language === 'english' ? '' : 'active'}`}
+            onClick={() => handleChangeLanguage('ru')}
+          >
+            {t('russian')}
+          </button>
         </div>
       </div>
     </div>

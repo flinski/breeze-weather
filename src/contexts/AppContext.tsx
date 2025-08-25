@@ -25,6 +25,7 @@ type AppContextType = {
     tempUnits: 'celsius' | 'fahrenheit'
     windUnits: 'm/s' | 'km/h'
     pressureUnits: 'mmHg' | 'hPa'
+    language: 'english' | 'russian'
   }
   setSettings: React.Dispatch<React.SetStateAction<AppContextType['settings']>>
 }
@@ -48,18 +49,20 @@ export function AppProvider({ children }: AppProviderProps) {
     error: weatherError,
     weather,
   } = useWeather(location.latitude, location.longitude)
-  const {
-    isLoading: searchResultsIsLoading,
-    error: searchResultsError,
-    searchResults,
-    setSearchResults,
-  } = useSearchResults(query)
   const [settings, setSettings] = useState<AppContextType['settings']>({
     theme: 'light',
     tempUnits: 'celsius',
     windUnits: 'km/h',
     pressureUnits: 'mmHg',
+    language: 'english',
   })
+  const lng = settings.language === 'english' ? 'en' : 'ru'
+  const {
+    isLoading: searchResultsIsLoading,
+    error: searchResultsError,
+    searchResults,
+    setSearchResults,
+  } = useSearchResults(query, lng)
 
   return (
     <AppContext.Provider

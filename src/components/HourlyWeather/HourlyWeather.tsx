@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useAppState } from '@/contexts/AppContext'
 import type { WeatherType } from '@/api'
 import { celsiusToFahrenheit, getFormattedTimeFromDateString, getWeatherDescription } from '@/utils'
@@ -19,6 +20,7 @@ export default function HourlyWeather({ weather }: HourlyWeatherProps) {
   const itemRef = useRef<HTMLLIElement>(null)
   const { settings } = useAppState()
   const isCelsius = settings.tempUnits === 'celsius'
+  const { t } = useTranslation()
 
   // const sunrises = weather.daily.sunrise.slice(0, 2)
   // const sunsets = weather.daily.sunset.slice(0, 2)
@@ -31,6 +33,9 @@ export default function HourlyWeather({ weather }: HourlyWeatherProps) {
     .map((weatherCode, index) => {
       const isDay = Boolean(hourlyIsDay[index])
       const description = getWeatherDescription(weatherCode)[isDay ? 'day' : 'night']
+      const weatherTextKey = `weather.${weatherCode}.${isDay ? 'day' : 'night'}`
+      const weatherTextTranslation = t(weatherTextKey)
+      description.description = weatherTextTranslation
       return description
     })
   const weatherHourly = Array.from({ length: 24 }, (_, index) => ({
@@ -75,9 +80,6 @@ export default function HourlyWeather({ weather }: HourlyWeatherProps) {
     const step = listWidth / 3
     const maxOffset = totalWidth - listWidth
 
-    console.log('listWidth:', listWidth)
-    console.log('totalWidth:', totalWidth)
-
     setOffset((curOffset) => {
       const targetOffset = curOffset - step
 
@@ -105,7 +107,7 @@ export default function HourlyWeather({ weather }: HourlyWeatherProps) {
 
   return (
     <div className={`${styles.hourlyWeather} widget`}>
-      <div className={styles.header}>24-hour forecast</div>
+      <div className={styles.header}>{t('hourly_forecast')}</div>
       <div className={styles.listWrapper}>
         <ul className={styles.list} style={{ transform: `translateX(${offset}px)` }} ref={listRef}>
           {weatherHourly.map((weather) => (

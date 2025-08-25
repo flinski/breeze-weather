@@ -1,0 +1,193 @@
+{
+  "language": "Language",
+  "english": "English",
+  "russian": "Russian",
+  "find_me": "Find me",
+  "current_weather": "Current Weather",
+  "hourly_forecast": "24-hour forecast",
+  "daily_forecast": "7-day forecast",
+  "today": "Today",
+  "theme": "Theme",
+  "theme_color": {
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "ms": "m/s",
+  "kmh": "km/h",
+  "mmhg": "mmHg",
+  "hpa": "hPa",
+  "feels_like": "Feels like",
+  "temperature": "Temperature",
+  "wind": "Wind",
+  "wind_directions": {
+    "n": "N",
+    "nne": "NNE",
+    "ne": "NE",
+    "ene": "ENE",
+    "e": "E",
+    "ese": "ESE",
+    "se": "SE",
+    "sse": "SSE",
+    "s": "S",
+    "ssw": "SSW",
+    "sw": "SW",
+    "wsw": "WSW",
+    "w": "W",
+    "wnw": "WNW",
+    "nw": "NW",
+    "nnw": "NNW"
+  },
+  "wind_units": {
+    "kmh": "km/h",
+    "ms": "m/s"
+  },
+  "pressure": "Pressure",
+  "pressure_units": {
+    "mmhg": "mmHg",
+    "hpa": "hPa"
+  },
+  "humidity": "Humidity",
+  "ultraviolet": "Ultraviolet",
+  "sunrise": "Sunrise",
+  "sunset": "Sunset",
+  "uv_index": {
+    "low": "Low",
+    "moderate": "Moderate",
+    "high": "High",
+    "very_high": "Very high",
+    "extreme": "Extreme"
+  },
+  "precipitation": {
+    "no": "No precipitation expected today",
+    "min": "Minimum amount of precipitation",
+    "light": "Light precipitation",
+    "significant": "Significant precipitation",
+    "heavy": "Heavy rainfall",
+    "extreme": "Extreme precipitation",
+    "dangerous": "Dangerous amount of precipitation"
+  },
+  "week": {
+    "sunday": "Sunday",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "unknown": "Unknown weekday"
+  },
+  "weather": {
+    "0": {
+      "day": "Sunny",
+      "night": "Clear"
+    },
+    "1": {
+      "day": "Mostly sunny",
+      "night": "Mostly clear"
+    },
+    "2": {
+      "day": "Partly cloudy",
+      "night": "Partly cloudy"
+    },
+    "3": {
+      "day": "Cloudy",
+      "night": "Cloudy"
+    },
+    "45": {
+      "day": "Foggy",
+      "night": "Foggy"
+    },
+    "48": {
+      "day": "Rime fog",
+      "night": "Rime fog"
+    },
+    "51": {
+      "day": "Light drizzle",
+      "night": "Light drizzle"
+    },
+    "53": {
+      "day": "Drizzle",
+      "night": "Drizzle"
+    },
+    "55": {
+      "day": "Heavy drizzle",
+      "night": "Heavy drizzle"
+    },
+    "56": {
+      "day": "Light freezing drizzle",
+      "night": "Light freezing drizzle"
+    },
+    "57": {
+      "day": "Freezing drizzle",
+      "night": "Freezing drizzle"
+    },
+    "61": {
+      "day": "Light rain",
+      "night": "Light rain"
+    },
+    "63": {
+      "day": "Rain",
+      "night": "Rain"
+    },
+    "65": {
+      "day": "Heavy rain",
+      "night": "Heavy rain"
+    },
+    "66": {
+      "day": "Light freezing rain",
+      "night": "Light freezing rain"
+    },
+    "67": {
+      "day": "Freezing rain",
+      "night": "Freezing rain"
+    },
+    "71": {
+      "day": "Light snow",
+      "night": "Light snow"
+    },
+    "73": {
+      "day": "Snow",
+      "night": "Snow"
+    },
+    "75": {
+      "day": "Heavy snow",
+      "night": "Heavy snow"
+    },
+    "77": {
+      "day": "Snow grains",
+      "night": "Snow grains"
+    },
+    "80": {
+      "day": "Light showers",
+      "night": "Light showers"
+    },
+    "81": {
+      "day": "Showers",
+      "night": "Showers"
+    },
+    "82": {
+      "day": "Heavy showers",
+      "night": "Heavy showers"
+    },
+    "85": {
+      "day": "Light snow showers",
+      "night": "Light snow showers"
+    },
+    "86": {
+      "day": "Snow showers",
+      "night": "Snow showers"
+    },
+    "95": {
+      "day": "Thunderstorm",
+      "night": "Thunderstorm"
+    },
+    "96": {
+      "day": "Light thunderstorms with hail",
+      "night": "Light thunderstorms with hail"
+    },
+    "99": {
+      "day": "Thunderstorm with hail",
+      "night": "Thunderstorm with hail"
+    }
+  }
+}

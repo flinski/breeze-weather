@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { AppProvider } from './contexts/AppContext'
 import App from '@/components/App'
 import '@/styles/index.scss'
+import './i18n'
 
 const rootElement = document.getElementById('root')
 

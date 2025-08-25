@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useAppState } from '@/contexts/AppContext'
 import type { WeatherType } from '@/api'
 import {
@@ -15,6 +16,7 @@ type DailyWeatherProps = {
 export default function DailyWeather({ weather }: DailyWeatherProps) {
   const { settings } = useAppState()
   const isCelsius = settings.tempUnits === 'celsius'
+  const { t } = useTranslation()
 
   const weatherDaily = Array.from({ length: 7 }, (_, index) => ({
     time: weather.daily.time[index],
@@ -25,26 +27,30 @@ export default function DailyWeather({ weather }: DailyWeatherProps) {
 
   return (
     <div className={`${styles.dailyWeather} widget`}>
-      <div className={styles.header}>7-day forecast</div>
+      <div className={styles.header}>{t('daily_forecast')}</div>
       <ul className={styles.list}>
         {weatherDaily.map((day, index) => {
           const weekDay = new Date(day.time).getDay()
+          let description = getWeatherDescription(day.code).day.description
+          const weatherTextKey = `weather.${day.code}.day`
+          const weatherTextTranslation = t(weatherTextKey)
+          description = weatherTextTranslation
 
           return (
             <li className={styles.item} key={day.time}>
               <div
                 className={`${styles.weekDay} ${weekDay === 0 || weekDay === 6 ? 'dayOff' : ''}`}
               >
-                {getWeekFromDateString(day.time)}
+                {getWeekFromDateString(day.time, t)}
               </div>
               <div className={styles.monthDay}>
-                {index === 0 ? 'Today' : getMonthDayFromDateString(day.time)}
+                {index === 0 ? t('today') : getMonthDayFromDateString(day.time)}
               </div>
               <div className={styles.image}>
                 <img
                   src={getWeatherDescription(day.code).day.images[1]}
-                  alt={getWeatherDescription(day.code).day.description}
-                  title={getWeatherDescription(day.code).day.description}
+                  alt={description}
+                  title={description}
                 />
               </div>
               <div className={styles.highTemp}>
@@ -59,8 +65,8 @@ export default function DailyWeather({ weather }: DailyWeatherProps) {
               <div className={styles.image}>
                 <img
                   src={getWeatherDescription(day.code).night.images[1]}
-                  alt={getWeatherDescription(day.code).night.description}
-                  title={getWeatherDescription(day.code).night.description}
+                  alt={description}
+                  title={description}
                 />
               </div>
             </li>

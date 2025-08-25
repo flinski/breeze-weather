@@ -17,7 +17,6 @@ export function useWeather(latitude: number, longitude: number) {
           throw new Error(`Error: ${weatherResponse.statusText} (${weatherResponse.status})`)
         }
         const weatherData: WeatherType | ErrorType = await weatherResponse.json()
-        console.log('weatherData:', weatherData)
         if ('error' in weatherData) {
           throw new Error(`Error: ${weatherData.reason}`)
         }

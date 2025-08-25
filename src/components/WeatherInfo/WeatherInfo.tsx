@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+import { useAppState } from '@/contexts/AppContext'
 import type { WeatherType } from '@/api'
 import {
   degreesToCompass,
@@ -6,8 +8,6 @@ import {
   hPaToMmHg,
   kmhToMs,
 } from '@/utils'
-
-import { useAppState } from '@/contexts/AppContext'
 
 import WindIcon from '@/components/icons/WindIcon'
 import ArrowIcon from '@/components/icons/ArrowIcon'
@@ -27,6 +27,7 @@ export default function WeatherInfo({ weather }: WeatherInfoProps) {
   const { settings } = useAppState()
   const isKmh = settings.windUnits === 'km/h'
   const isMmHg = settings.pressureUnits === 'mmHg'
+  const { t } = useTranslation()
 
   const windSpeed = weather.current.wind_speed_10m
   const windDirection = weather.current.wind_direction_10m
@@ -42,11 +43,14 @@ export default function WeatherInfo({ weather }: WeatherInfoProps) {
         <li className={styles.item}>
           <div className={styles.info}>
             <WindIcon className={styles.icon} />
-            <span className={styles.title}>Wind ({degreesToCompass(windDirection)})</span>
+            <span className={styles.title}>
+              {t('wind')} ({degreesToCompass(windDirection, t)})
+            </span>
           </div>
           <div className={styles.value}>
             <div className={styles.windValue}>
-              {isKmh ? windSpeed : kmhToMs(windSpeed).toFixed(1)} {settings.windUnits}
+              {isKmh ? windSpeed : kmhToMs(windSpeed).toFixed(1)}{' '}
+              {settings.windUnits === 'km/h' ? t('wind_units.kmh') : t('wind_units.ms')}
               <ArrowIcon style={{ rotate: `${windDirection + 225}deg` }} />
             </div>
           </div>
@@ -54,38 +58,38 @@ export default function WeatherInfo({ weather }: WeatherInfoProps) {
         <li className={styles.item}>
           <div className={styles.info}>
             <PressureIcon className={styles.icon} />
-            <span className={styles.title}>Pressure</span>
+            <span className={styles.title}>{t('pressure')}</span>
           </div>
           <div className={styles.value}>
             {isMmHg ? Math.round(hPaToMmHg(pressure)) : Math.round(pressure)}{' '}
-            {settings.pressureUnits}
+            {settings.pressureUnits === 'mmHg' ? t('pressure_units.mmhg') : t('pressure_units.hpa')}
           </div>
         </li>
         <li className={styles.item}>
           <div className={styles.info}>
             <DropletIcon className={styles.icon} />
-            <span className={styles.title}>Humidity</span>
+            <span className={styles.title}>{t('humidity')}</span>
           </div>
           <div className={styles.value}>{humidity}%</div>
         </li>
         <li className={styles.item}>
           <div className={styles.info}>
             <WavesIcon className={styles.icon} />
-            <span className={styles.title}>Ultraviolet</span>
+            <span className={styles.title}>{t('ultraviolet')}</span>
           </div>
-          <div className={styles.value}>{getUVIndexDescription(uvIndex)}</div>
+          <div className={styles.value}>{getUVIndexDescription(uvIndex, t)}</div>
         </li>
         <li className={styles.item}>
           <div className={styles.info}>
             <SunriseIcon className={styles.icon} />
-            <span className={styles.title}>Sunrise</span>
+            <span className={styles.title}>{t('sunrise')}</span>
           </div>
           <div className={styles.value}>{getFormattedTimeFromDateString(sunrise)}</div>
         </li>
         <li className={styles.item}>
           <div className={styles.info}>
             <SunsetIcon className={styles.icon} />
-            <span className={styles.title}>Sunset</span>
+            <span className={styles.title}>{t('sunset')}</span>
           </div>
           <div className={styles.value}>{getFormattedTimeFromDateString(sunset)}</div>
         </li>
