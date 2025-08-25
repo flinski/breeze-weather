@@ -1,5 +1,11 @@
+import { useAppState } from '@/contexts/AppContext'
 import type { WeatherType } from '@/api'
-import { getMonthDayFromDateString, getWeatherDescription, getWeekFromDateString } from '@/utils'
+import {
+  celsiusToFahrenheit,
+  getMonthDayFromDateString,
+  getWeatherDescription,
+  getWeekFromDateString,
+} from '@/utils'
 import styles from './DailyWeather.module.scss'
 
 type DailyWeatherProps = {
@@ -7,6 +13,9 @@ type DailyWeatherProps = {
 }
 
 export default function DailyWeather({ weather }: DailyWeatherProps) {
+  const { settings } = useAppState()
+  const isCelsius = settings.tempUnits === 'celsius'
+
   const weatherDaily = Array.from({ length: 7 }, (_, index) => ({
     time: weather.daily.time[index],
     code: weather.daily.weather_code[index],
@@ -38,9 +47,15 @@ export default function DailyWeather({ weather }: DailyWeatherProps) {
                   title={getWeatherDescription(day.code).day.description}
                 />
               </div>
-              <div className={styles.highTemp}>{Math.round(day.tempMax)}°</div>
+              <div className={styles.highTemp}>
+                {isCelsius ? Math.round(day.tempMax) : Math.round(celsiusToFahrenheit(day.tempMax))}
+                °
+              </div>
               <div className={styles.space}></div>
-              <div className={styles.lowTemp}>{Math.round(day.tempMin)}°</div>
+              <div className={styles.lowTemp}>
+                {isCelsius ? Math.round(day.tempMin) : Math.round(celsiusToFahrenheit(day.tempMin))}
+                °
+              </div>
               <div className={styles.image}>
                 <img
                   src={getWeatherDescription(day.code).night.images[1]}

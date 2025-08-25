@@ -70,7 +70,7 @@ export function getUVIndexDescription(uvIndex: number) {
   }
   return 'Extreme'
 }
-// @param
+
 export function getFormattedTimeFromDateString(dateString: string) {
   const date = new Date(dateString)
   const hours = date.getHours()
@@ -108,4 +108,12 @@ export function getWeekFromDateString(dateString: string) {
 export function getMonthDayFromDateString(dateString: string) {
   const monthDay = new Date(dateString).getDate()
   return monthDay
+}
+
+export function celsiusToFahrenheit(celsius: number): number {
+  return (celsius * 9) / 5 + 32
+}
+
+export function kmhToMs(kmh: number): number {
+  return kmh / 3.6
 }

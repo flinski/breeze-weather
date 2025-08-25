@@ -1,5 +1,6 @@
+import { useAppState } from '@/contexts/AppContext'
 import { type WeatherType } from '@/api'
-import { getPrecipitationDescription, getWeatherDescription } from '@/utils'
+import { celsiusToFahrenheit, getPrecipitationDescription, getWeatherDescription } from '@/utils'
 import styles from './CurrentWeather.module.scss'
 
 type CurrentWeatherProps = {
@@ -7,6 +8,9 @@ type CurrentWeatherProps = {
 }
 
 export default function CurrentWeather({ weather }: CurrentWeatherProps) {
+  const { settings } = useAppState()
+  const isCelsius = settings.tempUnits === 'celsius'
+
   const weatherCode = weather.current.weather_code
   const weatherDescription = getWeatherDescription(weatherCode)
   const isDay = Boolean(weather.current.is_day)
@@ -25,9 +29,12 @@ export default function CurrentWeather({ weather }: CurrentWeatherProps) {
         </div>
         <div className={styles.descriptionAndTemp}>
           <div className={styles.description}>
-            {weatherText}. Feels like {Math.round(feelTemp)}°
+            {weatherText}. Feels like{' '}
+            {isCelsius ? Math.round(feelTemp) : Math.round(celsiusToFahrenheit(feelTemp))}°
           </div>
-          <div className={styles.temp}>{Math.round(temp)}°</div>
+          <div className={styles.temp}>
+            {isCelsius ? Math.round(temp) : Math.round(celsiusToFahrenheit(temp))}°
+          </div>
         </div>
       </div>
       <div className={styles.summary}>{getPrecipitationDescription(preciptitationSum)}</div>

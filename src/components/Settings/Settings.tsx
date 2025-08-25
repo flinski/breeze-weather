@@ -44,10 +44,12 @@ export default function Settings({ isOpen, onClose }: SettingsProps) {
 
   const handleToggleLight = () => {
     setSettings((curSettings) => ({ ...curSettings, theme: 'light' }))
+    document.documentElement.classList.remove('dark')
   }
 
   const handleToggleDark = () => {
     setSettings((curSettings) => ({ ...curSettings, theme: 'dark' }))
+    document.documentElement.classList.add('dark')
   }
 
   const handleToggleCelsius = () => {

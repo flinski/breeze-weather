@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
+import { useAppState } from '@/contexts/AppContext'
 import type { WeatherType } from '@/api'
-import { getFormattedTimeFromDateString, getWeatherDescription } from '@/utils'
+import { celsiusToFahrenheit, getFormattedTimeFromDateString, getWeatherDescription } from '@/utils'
 
 import PrevIcon from '@/components/icons/PrevIcon'
 import NextIcon from '@/components/icons/NextIcon'
@@ -16,6 +17,8 @@ export default function HourlyWeather({ weather }: HourlyWeatherProps) {
   const [maxOffset, setMaxOffset] = useState(0)
   const listRef = useRef<HTMLUListElement>(null)
   const itemRef = useRef<HTMLLIElement>(null)
+  const { settings } = useAppState()
+  const isCelsius = settings.tempUnits === 'celsius'
 
   // const sunrises = weather.daily.sunrise.slice(0, 2)
   // const sunsets = weather.daily.sunset.slice(0, 2)
@@ -107,7 +110,12 @@ export default function HourlyWeather({ weather }: HourlyWeatherProps) {
         <ul className={styles.list} style={{ transform: `translateX(${offset}px)` }} ref={listRef}>
           {weatherHourly.map((weather) => (
             <li className={styles.item} ref={itemRef} key={weather.time}>
-              <div className={styles.temp}>{Math.round(weather.temp)}°</div>
+              <div className={styles.temp}>
+                {isCelsius
+                  ? Math.round(weather.temp)
+                  : Math.round(celsiusToFahrenheit(weather.temp))}
+                °
+              </div>
               <div className={styles.image}>
                 <img
                   src={weather.description.images[1]}

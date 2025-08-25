@@ -4,7 +4,10 @@ import {
   getFormattedTimeFromDateString,
   getUVIndexDescription,
   hPaToMmHg,
+  kmhToMs,
 } from '@/utils'
+
+import { useAppState } from '@/contexts/AppContext'
 
 import WindIcon from '@/components/icons/WindIcon'
 import ArrowIcon from '@/components/icons/ArrowIcon'
@@ -21,8 +24,11 @@ type WeatherInfoProps = {
 }
 
 export default function WeatherInfo({ weather }: WeatherInfoProps) {
+  const { settings } = useAppState()
+  const isKmh = settings.windUnits === 'km/h'
+  const isMmHg = settings.pressureUnits === 'mmHg'
+
   const windSpeed = weather.current.wind_speed_10m
-  const windSpeedUnits = weather.current_units.wind_speed_10m
   const windDirection = weather.current.wind_direction_10m
   const pressure = weather.current.pressure_msl
   const humidity = weather.current.relative_humidity_2m
@@ -40,7 +46,7 @@ export default function WeatherInfo({ weather }: WeatherInfoProps) {
           </div>
           <div className={styles.value}>
             <div className={styles.windValue}>
-              {windSpeed} {windSpeedUnits}
+              {isKmh ? windSpeed : kmhToMs(windSpeed).toFixed(1)} {settings.windUnits}
               <ArrowIcon style={{ rotate: `${windDirection + 225}deg` }} />
             </div>
           </div>
@@ -50,7 +56,10 @@ export default function WeatherInfo({ weather }: WeatherInfoProps) {
             <PressureIcon className={styles.icon} />
             <span className={styles.title}>Pressure</span>
           </div>
-          <div className={styles.value}>{Math.round(hPaToMmHg(pressure))} mmHg</div>
+          <div className={styles.value}>
+            {isMmHg ? Math.round(hPaToMmHg(pressure)) : Math.round(pressure)}{' '}
+            {settings.pressureUnits}
+          </div>
         </li>
         <li className={styles.item}>
           <div className={styles.info}>
