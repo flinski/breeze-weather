@@ -19,7 +19,13 @@ export default function FindMeButton() {
               `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
             )
             const data = await response.json()
-            setLocation({ name: data.address.city, latitude: latitude, longitude: longitude })
+            console.log(data)
+            const name =
+              data.address.city ||
+              data.address.village ||
+              data.address.city_district ||
+              data.address.state
+            setLocation({ name: name, latitude: latitude, longitude: longitude })
           } finally {
             setGeoIsLoading(false)
           }
