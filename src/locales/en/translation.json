@@ -12,6 +12,7 @@
     "light": "Light",
     "dark": "Dark"
   },
+	"units": "Units of measurement",
   "ms": "m/s",
   "kmh": "km/h",
   "mmhg": "mmHg",
